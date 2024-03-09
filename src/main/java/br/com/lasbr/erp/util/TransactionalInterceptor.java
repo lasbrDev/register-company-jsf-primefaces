@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 @Interceptor
+@Transactional
 @Priority(Interceptor.Priority.APPLICATION)
 public class TransactionalInterceptor implements Serializable {
 
