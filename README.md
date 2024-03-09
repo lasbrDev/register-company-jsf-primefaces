@@ -110,5 +110,5 @@ Feel free to contribute with improvements, bug fixes, or new features.
 
 ## Authors
 
-- [lasbrDev]
+- [@lasbrDev](https://github.com/lasbrDev)
 
