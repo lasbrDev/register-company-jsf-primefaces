@@ -2,15 +2,19 @@ package br.com.lasbr.erp.id;
 
 import java.math.BigDecimal;
 
+import javax.inject.Inject;
+
 public class ReportService {
 
-private final Orders orders;
-	
-	public ReportService(Orders orders) {
-		this.orders = orders;
-	}
+
+	@Inject
+	private Orders orders;
 
 	public BigDecimal totalOrdersCurrentMonth() {
-		return orders.totalOrdersCurrentMonth();		
+		return orders.totalOrdersCurrentMonth();
+	}
+	
+	public void setOrders(Orders orders) {
+		this.orders = orders;
 	}
 }
