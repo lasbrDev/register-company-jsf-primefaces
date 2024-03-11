@@ -6,6 +6,10 @@
 
 	<display-name>register-company-jsf</display-name>
 
+	<welcome-file-list>
+		<welcome-file>ManagementCompanies.xhtml</welcome-file>
+	</welcome-file-list>
+
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
