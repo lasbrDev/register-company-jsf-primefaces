@@ -6,6 +6,6 @@ public class Main {
 
 		Orders orders = new Orders();
 
-		ReportService reportService = new ReportService();
+		ReportService reportService = new ReportService(orders);
 	}
 }

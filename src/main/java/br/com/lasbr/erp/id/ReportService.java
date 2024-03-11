@@ -7,14 +7,14 @@ import javax.inject.Inject;
 public class ReportService {
 
 
-	@Inject
-	private Orders orders;
+	private final Orders orders;
+
+    @Inject
+    public ReportService(Orders orders) {
+        this.orders = orders;
+    }
 
 	public BigDecimal totalOrdersCurrentMonth() {
 		return orders.totalOrdersCurrentMonth();
-	}
-	
-	public void setOrders(Orders orders) {
-		this.orders = orders;
 	}
 }

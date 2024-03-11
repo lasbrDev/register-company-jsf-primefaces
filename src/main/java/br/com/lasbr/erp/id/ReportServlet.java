@@ -14,8 +14,12 @@ public class ReportServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	private ReportService service;
+    private final ReportService service;
+
+    @Inject
+    public ReportServlet(ReportService service) {
+        this.service = service;
+    }
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
