@@ -16,26 +16,67 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Corporate Name:" for="corporateName" />
-				<h:inputText id="corporateName"
-					value="#{managementCompaniesBean.company.corporateName}" />
+				<h:panelGroup>
+					<h:inputText id="corporateName"
+						value="#{managementCompaniesBean.company.corporateName}"
+						required="true" label="Corporate Name" />
+					<h:message for="corporateName" />
+				</h:panelGroup>
 
 				<h:outputLabel value="Trade Name:" for="tradeName" />
 				<h:inputText id="tradeName"
 					value="#{managementCompaniesBean.company.tradeName}" />
 
 				<h:outputLabel value="Company Type:" for="type" />
-				<h:selectOneMenu id="type"
-					value="#{managementCompaniesBean.company.companyType}">
-					<f:selectItem itemLabel="Select..." />
-					<f:selectItems value="#{managementCompaniesBean.companyTypes}"
-						var="companyType" itemLabel="#{companyType.description}"
-						itemValue="#{companyType}" />
-				</h:selectOneMenu>
+				<h:panelGroup>
+					<h:selectOneMenu id="type"
+						value="#{managementCompaniesBean.company.companyType}"
+						required="true">
+						<f:selectItem itemLabel="Select..." />
+						<f:selectItems value="#{managementCompaniesBean.companyTypes}"
+							var="companyType" itemLabel="#{companyType.description}"
+							itemValue="#{companyType}" />
+					</h:selectOneMenu>
+					<h:message for="Type" />
+				</h:panelGroup>
+
+				<h:outputLabel value="CNPJ:" for="cnpj" />
+				<h:panelGroup>
+					<h:inputText id="cnpj"
+						value="#{managementCompaniesBean.company.cnpj}"
+						label="CNPJ">
+						<f:validateLength minimum="18" maximum="18" />
+					</h:inputText>
+
+					<h:message for="cnpj" />
+				</h:panelGroup>
+
+				<h:outputLabel value="Fundation Date:" for="fundationDate" />
+				<h:panelGroup>
+					<h:inputText id="fundationDate"
+						value="#{managementCompaniesBean.company.fundationDate}"
+						label="Fundation Date">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+
+					<h:message for="fundationDate" />
+				</h:panelGroup>
+
+				<h:outputLabel value="Invoicing:" for="invoicing" />
+				<h:panelGroup>
+					<h:inputText id="invoicing"
+						value="#{managementCompaniesBean.company.invoicing}"
+						label="Invoicing">
+						<f:convertNumber pattern="#,##0.00" />
+						<f:validateDoubleRange minimum="0" />
+					</h:inputText>
+					<h:message for="invoicing" />
+				</h:panelGroup>
 
 				<h:outputLabel />
 				<h:commandButton value="Save"
 					actionListener="#{managementCompaniesBean.save}" />
-					
+
 				<h:outputLabel />
 				<h:commandLink value="Need Help"
 					action="#{managementCompaniesBean.help}" />

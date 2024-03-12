@@ -1,6 +1,7 @@
 package br.com.lasbr.erp.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -35,6 +36,8 @@ public class Company implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fundation_date")
 	private Date fundationDate;
+	@Column(precision = 10, scale = 2)
+	private BigDecimal invoicing;
 	
 	@ManyToOne
 	@JoinColumn(name = "field_activity_id", nullable = false)
@@ -82,6 +85,14 @@ public class Company implements Serializable {
 
 	public void setFundationDate(Date fundationDate) {
 		this.fundationDate = fundationDate;
+	}
+
+	public BigDecimal getInvoicing() {
+		return invoicing;
+	}
+
+	public void setInvoicing(BigDecimal invoicing) {
+		this.invoicing = invoicing;
 	}
 
 	public FieldActivity getFieldActivity() {
