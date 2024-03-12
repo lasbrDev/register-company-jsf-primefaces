@@ -16,45 +16,30 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Corporate Name:" for="corporateName" />
-				<h:inputText id="corporateName" />
+				<h:inputText id="corporateName"
+					value="#{managementCompaniesBean.company.corporateName}" />
 
 				<h:outputLabel value="Trade Name:" for="tradeName" />
-				<h:inputText id="tradeName" />
+				<h:inputText id="tradeName"
+					value="#{managementCompaniesBean.company.tradeName}" />
 
 				<h:outputLabel value="Company Type:" for="type" />
-				<h:selectOneMenu id="type">
+				<h:selectOneMenu id="type"
+					value="#{managementCompaniesBean.company.companyType}">
 					<f:selectItem itemLabel="Select..." />
-					<f:selectItem itemLabel="MEI" itemValue="MEI" />
-					<f:selectItem itemLabel="LTDA" itemValue="LTDA" />
+					<f:selectItems value="#{managementCompaniesBean.companyTypes}"
+						var="companyType" itemLabel="#{companyType.description}"
+						itemValue="#{companyType}" />
 				</h:selectOneMenu>
 
 				<h:outputLabel />
-				<h:commandButton value="Save" />
+				<h:commandButton value="Save"
+					actionListener="#{managementCompaniesBean.save}" />
+					
+				<h:outputLabel />
+				<h:commandLink value="Need Help"
+					action="#{managementCompaniesBean.help}" />
 			</h:panelGrid>
-
-			<h:dataTable value="#{[0, 0, 0, 0]}">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Corporate Name" />
-					</f:facet>
-					<h:outputText value="LasBr Softwares, Desenvolvimento LTDA" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Trade Name" />
-					</f:facet>
-					<h:outputText value="LasBr" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Company Type" />
-					</f:facet>
-					<h:outputText value="LTDA" />
-				</h:column>
-
-			</h:dataTable>
 		</h:form>
 	</div>
 
