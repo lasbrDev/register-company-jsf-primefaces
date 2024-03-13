@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html" lang="pt-BR"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="UTF-8" />
-	<title>Management Companies</title>
+	<title>Empresas de Gerenciamento</title>
 
 	<h:outputStylesheet library="tamplates" name="style.css" />
 </h:head>
@@ -15,70 +16,70 @@
 	<div id="content">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Corporate Name:" for="corporateName" />
+				<p:outputLabel value="Razão Social:" for="corporateName" />
 				<h:panelGroup>
-					<h:inputText id="corporateName"
+					<p:inputText id="corporateName"
 						value="#{managementCompaniesBean.company.corporateName}"
-						required="true" label="Corporate Name" />
-					<h:message for="corporateName" />
+						required="true" />
+					<p:message for="corporateName" />
 				</h:panelGroup>
 
-				<h:outputLabel value="Trade Name:" for="tradeName" />
-				<h:inputText id="tradeName"
+				<p:outputLabel value="Nome Fantasia:" for="tradeName" />
+				<p:inputText id="tradeName"
 					value="#{managementCompaniesBean.company.tradeName}" />
 
-				<h:outputLabel value="Company Type:" for="type" />
+				<p:outputLabel value="Tipo de Empresa:" for="type" />
 				<h:panelGroup>
-					<h:selectOneMenu id="type"
+					<p:selectOneMenu id="type"
 						value="#{managementCompaniesBean.company.companyType}"
 						required="true">
-						<f:selectItem itemLabel="Select..." />
+						<f:selectItem itemLabel="Selecione..." />
 						<f:selectItems value="#{managementCompaniesBean.companyTypes}"
 							var="companyType" itemLabel="#{companyType.description}"
 							itemValue="#{companyType}" />
-					</h:selectOneMenu>
-					<h:message for="Type" />
+					</p:selectOneMenu>
+					<p:message for="type" />
 				</h:panelGroup>
 
-				<h:outputLabel value="CNPJ:" for="cnpj" />
+				<p:outputLabel value="CNPJ:" for="cnpj" />
 				<h:panelGroup>
-					<h:inputText id="cnpj"
+					<p:inputText id="cnpj"
 						value="#{managementCompaniesBean.company.cnpj}"
-						label="CNPJ">
+						required="true">
 						<f:validateLength minimum="18" maximum="18" />
-					</h:inputText>
+					</p:inputText>
 
-					<h:message for="cnpj" />
+					<p:message for="cnpj" />
 				</h:panelGroup>
 
-				<h:outputLabel value="Fundation Date:" for="fundationDate" />
+				<p:outputLabel value="Data de Fundação:" for="fundationDate" />
 				<h:panelGroup>
-					<h:inputText id="fundationDate"
+					<p:inputText id="fundationDate"
 						value="#{managementCompaniesBean.company.fundationDate}"
-						label="Fundation Date">
+						label="Data de Fundação">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText>
+					</p:inputText>
 
-					<h:message for="fundationDate" />
+					<p:message for="fundationDate" />
 				</h:panelGroup>
 
-				<h:outputLabel value="Invoicing:" for="invoicing" />
+				<p:outputLabel value="Faturamento:" for="invoicing" />
 				<h:panelGroup>
-					<h:inputText id="invoicing"
+					<p:inputText id="invoicing"
 						value="#{managementCompaniesBean.company.invoicing}"
-						label="Invoicing">
+						label="Faturamento">
 						<f:convertNumber pattern="#,##0.00" />
 						<f:validateDoubleRange minimum="0" />
-					</h:inputText>
-					<h:message for="invoicing" />
+					</p:inputText>
+					<p:message for="invoicing" />
 				</h:panelGroup>
 
 				<h:outputLabel />
-				<h:commandButton value="Save"
-					actionListener="#{managementCompaniesBean.save}" />
+				<p:commandButton value="Salvar"
+					actionListener="#{managementCompaniesBean.save}" update="@form" />
 
 				<h:outputLabel />
-				<h:commandLink value="Need Help"
+				<p:commandLink value="Precisa de Ajuda ?"
 					action="#{managementCompaniesBean.help}" />
 			</h:panelGrid>
 		</h:form>
@@ -86,7 +87,7 @@
 
 	<footer>
 		<p>
-			Made with ❤ by <a href="https://github.com/lasbrDev" target="_blank">✝
+			Feito com ❤ por <a href="https://github.com/lasbrDev" target="_blank">✝
 				lasbrDev ✝</a>
 		</p>
 	</footer>
