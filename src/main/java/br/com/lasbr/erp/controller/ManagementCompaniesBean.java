@@ -10,6 +10,4 @@ import javax.inject.Named;
 public class ManagementCompaniesBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	
 }
