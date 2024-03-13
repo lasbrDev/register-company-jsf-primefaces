@@ -43,8 +43,9 @@
 
 				<p:outputLabel value="CNPJ:" for="cnpj" />
 				<h:panelGroup>
-					<p:inputText id="cnpj"
-						value="#{managementCompaniesBean.company.cnpj}">
+					<p:inputText id="cnpj" 
+					value="#{managementCompaniesBean.company.cnpj}"
+						required="true">
 						<f:validateLength minimum="18" maximum="18" />
 					</p:inputText>
 
@@ -75,10 +76,10 @@
 
 				<h:outputLabel />
 				<p:commandButton value="Salvar"
-					actionListener="#{managementCompaniesBean.save}" />
-
+					actionListener="#{managementCompaniesBean.save}" update="@form" />
 				<h:outputLabel />
-				<p:commandLink value="Precisa de Ajuda"
+				<p:commandLink value="Precisa de Ajuda ?"
+
 					action="#{managementCompaniesBean.help}" />
 			</h:panelGrid>
 		</h:form>
