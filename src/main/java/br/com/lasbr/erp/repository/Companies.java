@@ -3,6 +3,8 @@ package br.com.lasbr.erp.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.lasbr.erp.model.Company;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -13,6 +15,7 @@ public class Companies implements Serializable {
 	
 	private final transient EntityManager manager;
 	
+	@Inject
 	public Companies(EntityManager manager) {
 		this.manager = manager;
 	}
@@ -26,6 +29,10 @@ public class Companies implements Serializable {
 		TypedQuery<Company> query = manager.createQuery(jpql, Company.class);
 		query.setParameter("tradeName", name + "%");
 		return query.getResultList();
+	}
+	
+	public List<Company> all() {
+		return manager.createQuery("from Company", Company.class).getResultList();
 	}
 	
 	public Company save(Company company) {

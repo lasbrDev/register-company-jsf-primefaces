@@ -5,17 +5,40 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="UTF-8" />
-	<title>Empresas de Gerenciamento</title>
+	<title>Gerenciamento de Empresas</title>
 
 	<h:outputStylesheet library="tamplates" name="style.css" />
+	
+	<f:metadata>
+		<f:viewAction action="#{managementCompaniesBean.allCompanies}" />
+	</f:metadata>
 </h:head>
 <h:body>
 	<header>
 		<h:graphicImage library="tamplates" name="logo.png" />
 	</header>
 	
+	<H2>Cadastro de Empresas</H2>
+	
 	<div id="content">
+		<p:dataTable value="#{managementCompaniesBean.companiesList}" var="company" emptyMessage="Nenuma informação a ser exibida">
+			<p:column headerText="Razão Social">
+				<h:outputText value="#{company.corporateName}" />
+			</p:column>
+			
+			<p:column headerText="Nome Fantasia">
+				<h:outputText value="#{company.tradeName}" />
+			</p:column>
+			
+			<p:column headerText="Tipo Empresa">
+				<h:outputText value="#{company.companyType}" />
+			</p:column>
+			
+			<p:column headerText="Especialidade">
+				<h:outputText value="#{company.fieldActivity.description}" />
+			</p:column>
 		
+		</p:dataTable>
 	</div>
 
 	<footer>
