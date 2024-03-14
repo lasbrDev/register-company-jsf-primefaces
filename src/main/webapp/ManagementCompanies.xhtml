@@ -16,9 +16,46 @@
 		</f:metadata>
 
 		<h:form>
+			<p:toolbar>
+				<f:facet name="left">
+
+					<p:inputText placeholder="Digite aqui um termo para pesquisa..."
+						size="30" />
+					<p:commandButton icon="pi pi-search" value="Pesquisar" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon pi pi-ellipsis-v" />
+					</span>
+
+					<p:commandButton value="Novo Cadastro" icon="pi pi-plus" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon pi pi-ellipsis-v" />
+					</span>
+
+					<p:commandButton title="Editar" icon="pi pi-user-edit" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon pi pi-ellipsis-v" />
+					</span>
+
+					<p:commandButton title="Excluir" icon="pi pi-trash" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon pi pi-ellipsis-v" />
+					</span>
+
+					<p:commandButton title="Exportar para Excel"
+						icon="pi pi-file-excel" />
+				</f:facet>
+			</p:toolbar>
+
+			<p:spacer height="20px" />
+
 			<p:dataTable value="#{managementCompaniesBean.companiesList}"
 				var="company" emptyMessage="Nenuma informação a ser exibida"
-				paginator="true" rows="10" paginatorPosition="bottom">
+				paginator="true" rows="10" paginatorPosition="bottom"
+				showGridlines="true">
 				<p:column headerText="Razão Social"
 					sortBy="#{company.corporateName}">
 					<h:outputText value="#{company.corporateName}" />
