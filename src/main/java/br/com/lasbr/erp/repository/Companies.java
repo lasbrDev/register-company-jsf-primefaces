@@ -25,9 +25,9 @@ public class Companies implements Serializable {
 	}
 	
 	public List<Company> search(String name) {
-		String jpql = "from Company where tradeName like :tradeName";
+		String jpql = "from Company where corporateName like :corporateName";
 		TypedQuery<Company> query = manager.createQuery(jpql, Company.class);
-		query.setParameter("tradeName", name + "%");
+		query.setParameter("corporateName", name + "%");
 		return query.getResultList();
 	}
 	

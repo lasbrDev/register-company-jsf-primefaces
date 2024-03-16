@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.lasbr.erp.model.Company;
 import br.com.lasbr.erp.repository.Companies;
+import br.com.lasbr.erp.util.UserFacesMessage;
 
 @Named
 @ViewScoped
@@ -19,11 +20,16 @@ public class ManagementCompaniesBean implements Serializable {
 	
 	private final Companies companies;
 	
+	private final UserFacesMessage message;
+	
 	private List<Company> companiesList;
 	
+	private String wordSearch;
+	
 	@Inject
-	public ManagementCompaniesBean(Companies companies) {
+	public ManagementCompaniesBean(Companies companies, UserFacesMessage message) {
 		this.companies = companies;
+		this.message = message;
 	}
 	
 	public void allCompanies() {
@@ -32,5 +38,21 @@ public class ManagementCompaniesBean implements Serializable {
 	
 	public List<Company> getCompaniesList() {
 		return companiesList;
+	}
+	
+	public void search() {
+		companiesList = companies.search(wordSearch);
+		
+		if (companiesList.isEmpty()) {
+			message.info("Sua consulta não retornou um registro válido!");
+		}
+	}
+
+	public String getWordSearch() {
+		return wordSearch;
+	}
+
+	public void setWordSearch(String wordSearch) {
+		this.wordSearch = wordSearch;
 	}
 }

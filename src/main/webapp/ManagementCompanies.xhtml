@@ -16,12 +16,15 @@
 		</f:metadata>
 
 		<h:form>
+			<p:messages>
+				<p:autoUpdate />
+			</p:messages>
 			<p:toolbar>
 				<f:facet name="left">
 
 					<p:inputText placeholder="Digite aqui um termo para pesquisa..."
-						size="30" />
-					<p:commandButton icon="pi pi-search" value="Pesquisar" />
+						size="30" value="#{managementCompaniesBean.wordSearch}" />
+					<p:commandButton icon="pi pi-search" value="Pesquisar" actionListener="#{managementCompaniesBean.search}" update="companiesDataTable" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -52,7 +55,7 @@
 
 			<p:spacer height="20px" />
 
-			<p:dataTable value="#{managementCompaniesBean.companiesList}"
+			<p:dataTable id="companiesDataTable" value="#{managementCompaniesBean.companiesList}"
 				var="company" emptyMessage="Nenuma informação a ser exibida"
 				paginator="true" rows="10" paginatorPosition="bottom"
 				showGridlines="true">
