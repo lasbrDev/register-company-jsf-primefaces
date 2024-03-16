@@ -27,7 +27,7 @@
 						class="ui-icon pi pi-ellipsis-v" />
 					</span>
 
-					<p:commandButton value="Novo Cadastro" icon="pi pi-plus" />
+					<p:commandButton value="Novo Cadastro" icon="pi pi-plus" onclick="PF('companyDialogWidgetVar').show()" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -73,6 +73,10 @@
 					<h:outputText value="#{company.fieldActivity.description}" />
 				</p:column>
 			</p:dataTable>
+			
+			<p:dialog header="Nova Empresa" widgetVar="companyDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true" >
+				<p:commandButton value="teste" />
+			</p:dialog>
 		</h:form>
 
 	</ui:define>
