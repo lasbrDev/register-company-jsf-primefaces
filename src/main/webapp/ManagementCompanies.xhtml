@@ -24,13 +24,16 @@
 
 					<p:inputText placeholder="Digite aqui um termo para pesquisa..."
 						size="30" value="#{managementCompaniesBean.wordSearch}" />
-					<p:commandButton icon="pi pi-search" value="Pesquisar" actionListener="#{managementCompaniesBean.search}" update="companiesDataTable" />
+					<p:commandButton icon="pi pi-search" value="Pesquisar"
+						actionListener="#{managementCompaniesBean.search}"
+						update="companiesDataTable" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
 					</span>
 
-					<p:commandButton value="Novo Cadastro" icon="pi pi-plus" onclick="PF('companyDialogWidgetVar').show()" />
+					<p:commandButton value="Novo Cadastro" icon="pi pi-plus"
+						onclick="PF('companyDialogWidgetVar').show()" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -55,10 +58,10 @@
 
 			<p:spacer height="20px" />
 
-			<p:dataTable id="companiesDataTable" value="#{managementCompaniesBean.companiesList}"
-				var="company" emptyMessage="Nenuma informação a ser exibida"
-				paginator="true" rows="10" paginatorPosition="bottom"
-				showGridlines="true">
+			<p:dataTable id="companiesDataTable"
+				value="#{managementCompaniesBean.companiesList}" var="company"
+				emptyMessage="Nenuma informação a ser exibida" paginator="true"
+				rows="10" paginatorPosition="bottom" showGridlines="true">
 				<p:column headerText="Razão Social"
 					sortBy="#{company.corporateName}">
 					<h:outputText value="#{company.corporateName}" />
@@ -76,9 +79,43 @@
 					<h:outputText value="#{company.fieldActivity.description}" />
 				</p:column>
 			</p:dataTable>
-			
-			<p:dialog header="Nova Empresa" widgetVar="companyDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true" >
-				<p:commandButton value="teste" />
+
+			<p:dialog header="Nova Empresa" widgetVar="companyDialogWidgetVar"
+				modal="true" resizable="false" closeOnEscape="true">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Razão Social " for="corporateName" />
+					<p:inputText id="corporateName" size="80" maxlength="120" />
+
+					<p:outputLabel value="Nome Fantasia: " for="tradeName" />
+					<p:inputText id="tradeName" size="80" maxlength="120" />
+
+					<p:outputLabel value="Tipo Empresa: " for="companyType" />
+					<p:selectOneMenu id="companyType">
+						<f:selectItem itemLabel="Selecione..." />
+						<f:selectItems value="#{managementCompaniesBean.companyTypes}"
+							var="companyType" itemLabel="#{companyType.description}"
+							itemValue="#{companyType}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="CNPJ: " for="cnpj" />
+					<p:inputMask id="cnpj" mask="99.999.999/9999-99" size="18"
+						maxlength="18" />
+
+					<p:outputLabel value="Data Fundação: " for="fundationDate" />
+					<p:calendar id="fundationDate" locale="pt_BR" pattern="dd/MM/yyyy"
+						showOn="button" />
+
+					<p:outputLabel value="Especialidade: " for="fieldActivity" />
+					<p:autoComplete id="fieldActivity" size="80" />
+
+					<p:outputLabel value="Faturamento: " for="invoicing" />
+					<p:inputText id="invoicing" size="20" maxlength="14"
+						placeholder="R$ 0,00" />
+
+
+					<h:outputLabel />
+					<p:commandButton value="Salvar" />
+				</h:panelGrid>
 			</p:dialog>
 		</h:form>
 

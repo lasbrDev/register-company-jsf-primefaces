@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.lasbr.erp.model.Company;
+import br.com.lasbr.erp.model.CompanyType;
 import br.com.lasbr.erp.repository.Companies;
 import br.com.lasbr.erp.util.UserFacesMessage;
 
@@ -54,5 +55,9 @@ public class ManagementCompaniesBean implements Serializable {
 
 	public void setWordSearch(String wordSearch) {
 		this.wordSearch = wordSearch;
+	}
+	
+	public CompanyType[] getCompanyTypes() {
+		return CompanyType.values();
 	}
 }
