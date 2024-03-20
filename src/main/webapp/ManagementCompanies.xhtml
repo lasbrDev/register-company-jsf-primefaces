@@ -106,12 +106,13 @@
 						showOn="button" />
 
 					<p:outputLabel value="Especialidade: " for="fieldActivity" />
-					<p:autoComplete id="fieldActivity" size="80" />
+					<p:autoComplete id="fieldActivity" size="80"
+						completeMethod="#{managementCompaniesBean.completeFieldActivities}"
+						converter="#{managementCompaniesBean.fieldActivityConveter}" var="fieldActivity" itemLabel="#{fieldActivity.description}" itemValue="#{fieldActivity}" />
 
 					<p:outputLabel value="Faturamento: " for="invoicing" />
 					<p:inputText id="invoicing" size="20" maxlength="14"
 						placeholder="R$ 0,00" />
-
 
 					<h:outputLabel />
 					<p:commandButton value="Salvar" />

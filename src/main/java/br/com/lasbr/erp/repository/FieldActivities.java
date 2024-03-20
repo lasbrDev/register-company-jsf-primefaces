@@ -3,6 +3,9 @@ package br.com.lasbr.erp.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import br.com.lasbr.erp.model.FieldActivity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -10,12 +13,14 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
+@Named
 public class FieldActivities implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private final transient EntityManager manager;
-
+	
+	@Inject
 	public FieldActivities(EntityManager manager) {
 		this.manager = manager;
 	}
