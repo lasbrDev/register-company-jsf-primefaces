@@ -3,6 +3,7 @@ package br.com.lasbr.erp.util;
 import java.io.Serializable;
 
 import javax.annotation.Priority;
+import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -19,6 +20,7 @@ public class TransactionalInterceptor implements Serializable {
 	
 	private final transient EntityManager manager;
 	
+	@Inject
 	public TransactionalInterceptor(EntityManager manager) {
 		this.manager = manager;
 	}

@@ -36,7 +36,7 @@ public class Company implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fundation_date")
 	private Date fundationDate;
-	@Column(precision = 10, scale = 2)
+	@Column(name = "invoicing", precision = 10, scale = 2)
 	private BigDecimal invoicing;
 	
 	@ManyToOne
