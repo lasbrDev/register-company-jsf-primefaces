@@ -91,18 +91,20 @@
 			<p:dialog id="companyDialog" header="Nova Empresa"
 				widgetVar="companyDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true">
+				<p:messages id="companyMessages" />
+				
 				<h:panelGrid id="companiesPanelGrid" columns="2"
 					rendered="#{managementCompaniesBean.company ne null}">
 					<p:outputLabel value="Razão Social " for="corporateName" />
 					<p:inputText id="corporateName" size="80" maxlength="120"
-						value="#{managementCompaniesBean.company.corporateName}" />
+						value="#{managementCompaniesBean.company.corporateName}" required="true" />
 
 					<p:outputLabel value="Nome Fantasia: " for="tradeName" />
 					<p:inputText id="tradeName" size="80" maxlength="120"
-						value="#{managementCompaniesBean.company.tradeName}" />
+						value="#{managementCompaniesBean.company.tradeName}" required="true" />
 
 					<p:outputLabel value="Tipo Empresa: " for="companyType" />
-					<p:selectOneMenu id="companyType"
+					<p:selectOneMenu id="companyType" required="true"
 						value="#{managementCompaniesBean.company.companyType}">
 						<f:selectItem itemLabel="Selecione..." />
 						<f:selectItems value="#{managementCompaniesBean.companyTypes}"
@@ -112,12 +114,12 @@
 
 					<p:outputLabel value="CNPJ: " for="cnpj" />
 					<p:inputMask id="cnpj" mask="99.999.999/9999-99" size="18"
-						maxlength="18" value="#{managementCompaniesBean.company.cnpj}" />
+						maxlength="18" value="#{managementCompaniesBean.company.cnpj}" required="true" />
 
 					<p:outputLabel value="Data Fundação: " for="fundationDate" />
 					<p:calendar id="fundationDate" locale="pt_BR" pattern="dd/MM/yyyy"
 						showOn="button"
-						value="#{managementCompaniesBean.company.fundationDate}" />
+						value="#{managementCompaniesBean.company.fundationDate}" required="true" />
 
 					<p:outputLabel value="Especialidade: " for="fieldActivity" />
 					<p:autoComplete id="fieldActivity" size="80"
@@ -125,18 +127,18 @@
 						completeMethod="#{managementCompaniesBean.completeFieldActivities}"
 						converter="#{managementCompaniesBean.fieldActivityConveter}"
 						var="fieldActivity" itemLabel="#{fieldActivity.description}"
-						itemValue="#{fieldActivity}" />
+						itemValue="#{fieldActivity}" required="true" />
 
 					<p:outputLabel value="Faturamento: " for="invoicing" />
 					<p:inputNumber id="invoicing" symbol="BRL" symbolPosition="s"
 						decimalSeparator="," thousandSeparator="."
-						value="#{managementCompaniesBean.company.invoicing}" />
+						value="#{managementCompaniesBean.company.invoicing}" required="true" />
 
 					<h:outputLabel />
 					<p:commandButton value="Salvar"
 						actionListener="#{managementCompaniesBean.save}"
-						update="companiesDataTable companiesPanelGrid"
-						oncomplete="PF('companyDialogWidgetVar').hide()"
+						update="companiesDataTable companiesPanelGrid companyMessages"
+						oncomplete="if (!args.validationFailed) PF('companyDialogWidgetVar').hide()"
 						process="companyDialog" />
 				</h:panelGrid>
 			</p:dialog>

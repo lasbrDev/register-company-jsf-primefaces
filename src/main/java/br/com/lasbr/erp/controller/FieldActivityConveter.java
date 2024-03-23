@@ -5,6 +5,8 @@ import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.lasbr.erp.model.FieldActivity;
 
@@ -13,12 +15,10 @@ public class FieldActivityConveter implements Converter {
 	
 	private List<FieldActivity> listFieldAcitivity;
 	
-
 	public FieldActivityConveter(List<FieldActivity> listFieldAcitivity) {
 		this.listFieldAcitivity = listFieldAcitivity;
 	}
 
-	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value == null) {
 			return null;

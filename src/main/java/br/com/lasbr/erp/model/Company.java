@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +19,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 @Entity
 @Table(name = "company")
@@ -27,22 +34,38 @@ public class Company implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty
 	@Column(name = "trade_name", nullable = false, length = 100)
 	private String tradeName;
+	
+	@NotEmpty
 	@Column(name = "corporate_name", nullable = false, length = 120)
 	private String corporateName;
 	@Column(nullable = false, length = 18)
+	
+	@NotNull
+	@CNPJ
 	private String cnpj;
+	
+	@NotNull
+	@Past
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fundation_date")
 	private Date fundationDate;
+	
+	@NotNull
+	@DecimalMin(value = "0.00", inclusive = true)
+	@DecimalMax(value = "1000000.00", inclusive = true)
 	@Column(name = "invoicing", precision = 10, scale = 2)
 	private BigDecimal invoicing;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "field_activity_id", nullable = false)
 	private FieldActivity fieldActivity;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 50)
 	private CompanyType companyType;
