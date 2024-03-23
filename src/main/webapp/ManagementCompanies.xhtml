@@ -16,9 +16,7 @@
 		</f:metadata>
 
 		<h:form>
-			<p:messages>
-				<p:autoUpdate />
-			</p:messages>
+			<p:messages id="messages" showDetail="true" />
 			<p:toolbar>
 				<f:facet name="left">
 
@@ -28,7 +26,7 @@
 
 					<p:commandButton icon="pi pi-search" value="Pesquisar"
 						actionListener="#{managementCompaniesBean.search}"
-						update="companiesDataTable" process="@this wordSearch" />
+						update="companiesDataTable messages" process="@this wordSearch" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -37,7 +35,10 @@
 					<p:commandButton value="Novo Cadastro" icon="pi pi-plus"
 						actionListener="#{managementCompaniesBean.prepareNewCompany}"
 						oncomplete="PF('companyDialogWidgetVar').show()"
-						update="companyDialog" process="@this" />
+						update="companyDialog" process="@this">
+						<p:resetInput target="companyDialog" />	
+					</p:commandButton>
+						
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -92,16 +93,18 @@
 				widgetVar="companyDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true">
 				<p:messages id="companyMessages" />
-				
+
 				<h:panelGrid id="companiesPanelGrid" columns="2"
 					rendered="#{managementCompaniesBean.company ne null}">
 					<p:outputLabel value="Razão Social " for="corporateName" />
 					<p:inputText id="corporateName" size="80" maxlength="120"
-						value="#{managementCompaniesBean.company.corporateName}" required="true" />
+						value="#{managementCompaniesBean.company.corporateName}"
+						required="true" />
 
 					<p:outputLabel value="Nome Fantasia: " for="tradeName" />
-					<p:inputText id="tradeName" size="80" maxlength="120"
-						value="#{managementCompaniesBean.company.tradeName}" required="true" />
+					<p:inputText id="tradeName" size="80" maxlength="100"
+						value="#{managementCompaniesBean.company.tradeName}"
+						required="true" />
 
 					<p:outputLabel value="Tipo Empresa: " for="companyType" />
 					<p:selectOneMenu id="companyType" required="true"
@@ -114,12 +117,14 @@
 
 					<p:outputLabel value="CNPJ: " for="cnpj" />
 					<p:inputMask id="cnpj" mask="99.999.999/9999-99" size="18"
-						maxlength="18" value="#{managementCompaniesBean.company.cnpj}" required="true" />
+						maxlength="18" value="#{managementCompaniesBean.company.cnpj}"
+						required="true" />
 
 					<p:outputLabel value="Data Fundação: " for="fundationDate" />
 					<p:calendar id="fundationDate" locale="pt_BR" pattern="dd/MM/yyyy"
 						showOn="button"
-						value="#{managementCompaniesBean.company.fundationDate}" required="true" />
+						value="#{managementCompaniesBean.company.fundationDate}"
+						required="true" />
 
 					<p:outputLabel value="Especialidade: " for="fieldActivity" />
 					<p:autoComplete id="fieldActivity" size="80"
@@ -132,12 +137,13 @@
 					<p:outputLabel value="Faturamento: " for="invoicing" />
 					<p:inputNumber id="invoicing" symbol="BRL" symbolPosition="s"
 						decimalSeparator="," thousandSeparator="."
-						value="#{managementCompaniesBean.company.invoicing}" required="true" />
+						value="#{managementCompaniesBean.company.invoicing}"
+						required="true" />
 
 					<h:outputLabel />
 					<p:commandButton value="Salvar"
-						actionListener="#{managementCompaniesBean.save}"
-						update="companiesDataTable companiesPanelGrid companyMessages"
+						actionListener="#{managementCompaniesBean.save}" 
+						update="companiesPanelGrid companyMessages companiesDataTable"
 						oncomplete="if (!args.validationFailed) PF('companyDialogWidgetVar').hide()"
 						process="companyDialog" />
 				</h:panelGrid>

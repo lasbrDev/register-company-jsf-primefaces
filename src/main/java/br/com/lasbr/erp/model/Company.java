@@ -150,7 +150,7 @@ public class Company implements Serializable {
 		Company other = (Company) obj;
 		return Objects.equals(id, other.id);
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Company [id=" + id + "]";

@@ -25,38 +25,41 @@ public class ManagementCompaniesBean implements Serializable {
 	private final Companies companies;
 
 	private final UserFacesMessage message;
-	
+
 	private final FieldActivities fieldActivities;
-	
+
 	private Company company;
-	
+
 	private final RegistrationCompanyService service;
 
 	private List<Company> companiesList;
-	
+
 	@SuppressWarnings("rawtypes")
 	private transient Converter fieldActivityConveter;
-	
+
 	private String wordSearch;
 
 	@Inject
-	public ManagementCompaniesBean(Companies companies, UserFacesMessage message, FieldActivities fieldActivities, RegistrationCompanyService service) {
+	public ManagementCompaniesBean(Companies companies, UserFacesMessage message, FieldActivities fieldActivities,
+			RegistrationCompanyService service) {
 		this.companies = companies;
 		this.message = message;
 		this.fieldActivities = fieldActivities;
 		this.service = service;
 	}
-	
+
 	public void prepareNewCompany() {
 		company = new Company();
 	}
-	
+
 	public void save() {
 		service.save(company);
 		if (isSearchPerformed()) {
 			search();
+		} else {
+			allCompanies();
 		}
-		message.info("Empresa cadastrada com sucesso!");
+		message.info("Empresa salva com sucesso!");
 	}
 
 	public void allCompanies() {
@@ -74,13 +77,13 @@ public class ManagementCompaniesBean implements Serializable {
 			message.info("Sua consulta não retornou um registro válido!");
 		}
 	}
-	
+
 	public List<FieldActivity> completeFieldActivities(String description) {
 		List<FieldActivity> listFieldActivities = fieldActivities.search(description);
 		fieldActivityConveter = new FieldActivityConveter(listFieldActivities);
 		return listFieldActivities;
 	}
-	
+
 	private boolean isSearchPerformed() {
 		return wordSearch != null && !"".equals(wordSearch);
 	}
@@ -96,12 +99,12 @@ public class ManagementCompaniesBean implements Serializable {
 	public CompanyType[] getCompanyTypes() {
 		return CompanyType.values();
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public Converter getFieldActivityConveter() {
 		return fieldActivityConveter;
 	}
-	
+
 	public Company getCompany() {
 		return company;
 	}

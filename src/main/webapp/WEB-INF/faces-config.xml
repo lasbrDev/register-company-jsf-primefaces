@@ -9,5 +9,6 @@
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
+		<message-bundle>br.com.lasbr.erp.Messages</message-bundle>
 	</application>
 </faces-config>
