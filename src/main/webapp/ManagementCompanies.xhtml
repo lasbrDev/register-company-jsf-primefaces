@@ -71,7 +71,9 @@
 					</span>
 
 					<p:commandButton title="Exportar para Excel"
-						icon="pi pi-file-excel" />
+						icon="pi pi-file-excel">
+						<p:dataExporter fileName="Relatório" type="xls" target="companiesDataTable"  />
+					</p:commandButton>
 				</f:facet>
 			</p:toolbar>
 
