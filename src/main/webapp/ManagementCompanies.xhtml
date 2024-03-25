@@ -16,6 +16,7 @@
 		</f:metadata>
 
 		<h:form id="frm">
+
 			<p:messages id="messages" showDetail="true" />
 			<p:toolbar id="toolbar">
 				<f:facet name="left">
@@ -57,7 +58,13 @@
 					</span>
 
 					<p:commandButton title="Excluir" icon="pi pi-trash"
-						disabled="#{not managementCompaniesBean.companySelected}" />
+						disabled="#{not managementCompaniesBean.companySelected}"
+						actionListener="#{managementCompaniesBean.delete}"
+						update="messages companiesDataTable toolbar" process="@this">
+						<p:confirm icon="pi pi-exclamation-triangle"
+							header="Confirmação de Exclusão"
+							message="Tem certeza que deseja excluir o registro?" />
+					</p:commandButton>
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />

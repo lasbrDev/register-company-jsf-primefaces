@@ -9,6 +9,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import br.com.lasbr.erp.model.Company;
 import br.com.lasbr.erp.model.CompanyType;
 import br.com.lasbr.erp.model.FieldActivity;
@@ -52,19 +54,26 @@ public class ManagementCompaniesBean implements Serializable {
 	public void prepareNewCompany() {
 		company = new Company();
 	}
-	
+
 	public void prepareEditing() {
 		fieldActivityConveter = new FieldActivityConveter(Arrays.asList(company.getFieldActivity()));
 	}
 
 	public void save() {
 		service.save(company);
-		if (isSearchPerformed()) {
-			search();
-		} else {
-			allCompanies();
-		}
+		
+		updateRecords();
+		
 		message.info("Empresa salva com sucesso!");
+		PrimeFaces.current().ajax().update(Arrays.asList("frm:companiesDataTable", "frm:messages"));
+	}
+	
+	public void delete() {
+		service.delete(company);
+		company = null;
+		updateRecords();
+		
+		message.info("Empresa excluída com sucesso!");		
 	}
 
 	public void allCompanies() {
@@ -87,6 +96,14 @@ public class ManagementCompaniesBean implements Serializable {
 		List<FieldActivity> listFieldActivities = fieldActivities.search(description);
 		fieldActivityConveter = new FieldActivityConveter(listFieldActivities);
 		return listFieldActivities;
+	}
+	
+	private void updateRecords() {
+		if (isSearchPerformed()) {
+			search();
+		} else {
+			allCompanies();
+		}
 	}
 
 	private boolean isSearchPerformed() {
@@ -113,12 +130,12 @@ public class ManagementCompaniesBean implements Serializable {
 	public Company getCompany() {
 		return company;
 	}
-	
+
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
+
 	public boolean isCompanySelected() {
-		return company != null && company.getId() != null;		
+		return company != null && company.getId() != null;
 	}
 }

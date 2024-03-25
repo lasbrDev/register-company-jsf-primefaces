@@ -9,16 +9,17 @@
 	<title>Gerenciamento de Empresas</title>
 
 	<h:outputStylesheet library="templates" name="style.css" />
-	<h:outputStylesheet library="webjars" name="font-awesome/5.15.4/css/all.min-jsf.css" />
-	
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.15.4/css/all.min-jsf.css" />
+
 </h:head>
 <h:body>
 	<header>
 		<h:graphicImage library="templates" name="logo.png" />
 	</header>
 	<h2>
-		<ui:insert name="title" />	
-	</h2>	
+		<ui:insert name="title" />
+	</h2>
 
 	<div id="content">
 		<ui:insert name="content" />
@@ -30,6 +31,16 @@
 				lasbrDev ✝</a>
 		</p>
 	</footer>
+
+	<h:form>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			responsive="true" width="450">
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no ui-button-flat" />
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" />
+		</p:confirmDialog>
+	</h:form>
 </h:body>
 
 </html>
