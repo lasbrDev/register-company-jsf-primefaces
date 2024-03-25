@@ -1,6 +1,7 @@
 package br.com.lasbr.erp.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.convert.Converter;
@@ -50,6 +51,10 @@ public class ManagementCompaniesBean implements Serializable {
 
 	public void prepareNewCompany() {
 		company = new Company();
+	}
+	
+	public void prepareEditing() {
+		fieldActivityConveter = new FieldActivityConveter(Arrays.asList(company.getFieldActivity()));
 	}
 
 	public void save() {
@@ -107,5 +112,13 @@ public class ManagementCompaniesBean implements Serializable {
 
 	public Company getCompany() {
 		return company;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	public boolean isCompanySelected() {
+		return company != null && company.getId() != null;		
 	}
 }

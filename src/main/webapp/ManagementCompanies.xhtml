@@ -15,9 +15,9 @@
 			<f:viewAction action="#{managementCompaniesBean.allCompanies}" />
 		</f:metadata>
 
-		<h:form>
+		<h:form id="frm">
 			<p:messages id="messages" showDetail="true" />
-			<p:toolbar>
+			<p:toolbar id="toolbar">
 				<f:facet name="left">
 
 					<p:inputText id="wordSearch"
@@ -36,21 +36,28 @@
 						actionListener="#{managementCompaniesBean.prepareNewCompany}"
 						oncomplete="PF('companyDialogWidgetVar').show()"
 						update="companyDialog" process="@this">
-						<p:resetInput target="companyDialog" />	
+						<p:resetInput target="companyDialog" />
 					</p:commandButton>
-						
+
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
 					</span>
 
-					<p:commandButton title="Editar" icon="pi pi-user-edit" />
+					<p:commandButton title="Editar" icon="pi pi-user-edit"
+						disabled="#{not managementCompaniesBean.companySelected}"
+						actionListener="#{managementCompaniesBean.prepareEditing}"
+						oncomplete="PF('companyDialogWidgetVar').show()"
+						update="companyDialog" process="@this">
+						<p:resetInput target="companyDialog" />
+					</p:commandButton>
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
 					</span>
 
-					<p:commandButton title="Excluir" icon="pi pi-trash" />
+					<p:commandButton title="Excluir" icon="pi pi-trash"
+						disabled="#{not managementCompaniesBean.companySelected}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon pi pi-ellipsis-v" />
@@ -66,7 +73,13 @@
 			<p:dataTable id="companiesDataTable"
 				value="#{managementCompaniesBean.companiesList}" var="company"
 				emptyMessage="Nenuma informação a ser exibida" paginator="true"
-				rows="10" paginatorPosition="bottom" showGridlines="true">
+				rows="10" paginatorPosition="bottom" selectionMode="single"
+				selection="#{managementCompaniesBean.company}"
+				rowKey="#{company.id}" showGridlines="true">
+
+				<p:ajax event="rowSelect" update="frm:toolbar" />
+				<p:ajax event="rowUnselect" update="frm:toolbar" />
+
 				<p:column headerText="Razão Social"
 					sortBy="#{company.corporateName}">
 					<h:outputText value="#{company.corporateName}" />
@@ -93,6 +106,8 @@
 				widgetVar="companyDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true">
 				<p:messages id="companyMessages" />
+
+				<p:defaultCommand target="saveCommandButton" scope="companyDialog" />
 
 				<h:panelGrid id="companiesPanelGrid" columns="2"
 					rendered="#{managementCompaniesBean.company ne null}">
@@ -141,8 +156,8 @@
 						required="true" />
 
 					<h:outputLabel />
-					<p:commandButton value="Salvar"
-						actionListener="#{managementCompaniesBean.save}" 
+					<p:commandButton id="saveCommandButton" value="Salvar"
+						actionListener="#{managementCompaniesBean.save}"
 						update="companiesPanelGrid companyMessages companiesDataTable"
 						oncomplete="if (!args.validationFailed) PF('companyDialogWidgetVar').hide()"
 						process="companyDialog" />
