@@ -42,8 +42,8 @@ public class Company implements Serializable {
 	@NotEmpty
 	@Column(name = "corporate_name", nullable = false, length = 120)
 	private String corporateName;
-	@Column(nullable = false, length = 18)
 	
+	@Column(nullable = false, length = 18)
 	@NotNull
 	@CNPJ
 	private String cnpj;
@@ -67,7 +67,7 @@ public class Company implements Serializable {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 50)
+	@Column(name= "company_type", nullable = false, length = 50)
 	private CompanyType companyType;
 
 	public Integer getId() {
