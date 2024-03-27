@@ -10,7 +10,6 @@ header {
     padding: 2.0px;
     margin-bottom: 20px;
     height: 30px;
-    background-color: rgb(153, 193, 241);
     color: #fff;
     box-shadow: 0px 2px 2px #ccc;
 }
@@ -26,7 +25,7 @@ footer {
     margin-bottom: 10px; 
 }
 
-h1 {
+h2 {
     font-size: 24px;
     font-weight: 500;
     padding: 0px;

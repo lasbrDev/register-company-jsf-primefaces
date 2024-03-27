@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
 
-	<display-name>register-company-jsf</display-name>
+	<display-name>Login</display-name>
 
 	<welcome-file-list>
-		<welcome-file>ManagementCompanies.xhtml</welcome-file>
+		<welcome-file>Login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>
