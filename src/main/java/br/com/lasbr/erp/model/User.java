@@ -51,12 +51,6 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(name = "recovery_code")
-	private String recoveryCode;
-
-	@Column(name = "code_expiration")
-	private Date recoveryCodeExpiration;
-
 	public Integer getId() {
 		return id;
 	}
@@ -103,22 +97,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getRecoveryCode() {
-		return recoveryCode;
-	}
-
-	public void setRecoveryCode(String recoveryCode) {
-		this.recoveryCode = recoveryCode;
-	}
-
-	public Date getRecoveryCodeExpiration() {
-		return recoveryCodeExpiration;
-	}
-
-	public void setRecoveryCodeExpiration(Date recoveryCodeExpiration) {
-		this.recoveryCodeExpiration = recoveryCodeExpiration;
 	}
 
 	@Override

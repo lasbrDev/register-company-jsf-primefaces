@@ -51,6 +51,7 @@ body {
 }
 
 .inputs {
+	flex: 1;
 	padding: 5px;
 	height: 42px;
 	border-radius: 6px;
@@ -94,6 +95,7 @@ hr {
 
 .btn-enter {
 	background-color: var(--color-blue);
+	width: 100%;
 }
 
 .btn-enter:hover {
@@ -132,3 +134,12 @@ h4 {
 .heart {
 	color: red;
 }
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.input-group {
+	display: flex;
+}s
+
