@@ -2,7 +2,6 @@ package br.com.lasbr.erp.service;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,7 +11,6 @@ import br.com.lasbr.erp.repository.Users;
 import br.com.lasbr.erp.util.Transactional;
 
 @Named
-@RequestScoped
 public class UserService implements Serializable {
 
 	private static final long serialVersionUID = 1L;

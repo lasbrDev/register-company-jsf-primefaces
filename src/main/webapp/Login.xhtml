@@ -32,8 +32,47 @@
 
 				<hr />
 
-				<p:commandButton type="button" value="Criar Nova Conta"
-					styleClass="ui-button-success" />
+				<p:commandButton value="Criar Nova Conta"
+					actionListener="#{userBean.prepareNewUser}"
+					oncomplete="PF('userDialogWidgetVar').show()" styleClass="ui-button-success"
+					update="userDialog" process="@this">
+					<p:resetInput target="userDialog" />
+				</p:commandButton>
+
+				<p:dialog id="userDialog" header="Cadastre-se"
+					widgetVar="userDialogWidgetVar" resizable="false" modal="true"
+					closable="true">
+
+					<p:defaultCommand target="saveCommandButton" scope="userDialog" />
+
+					<p:panelGrid id="usersPanelGrid" columns="2"
+						styleClass="ui-panelgrid-blank"
+						rendered="#{userBean.user ne null}">
+
+						<p:outputLabel value="Nome" for="firstName" />
+						<p:inputText id="firstName" value="#{userBean.user.firstName}"
+							required="true" />
+
+						<p:outputLabel value="Sobrenome" for="lastName" />
+						<p:inputText id="lastName" value="#{userBean.user.lastName}" />
+
+						<p:outputLabel value="Email" for="email" />
+						<p:inputMask id="email" mask=""
+							value="#{userBean.user.email}" required="true" />
+
+						<p:outputLabel value="Data de Nascimento" for="birthDate" />
+						<p:calendar id="birthDate" locale="pt_BR" pattern="dd/MM/yyyy"
+							showOn="button" value="#{userBean.user.birthDate}" required="true" />
+
+						<p:outputLabel for="password" value="Senha" />
+						<p:password id="password" value="#{userBean.user.password}" required="true" />
+						
+						<h:outputLabel />
+
+						<p:commandButton id="saveCommandButton" value="Cadastrar" action="#{userBean.save}"
+							oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').hide();" process="userDialog" />
+					</p:panelGrid>
+				</p:dialog>
 			</h:form>
 		</div>
 	</div>
