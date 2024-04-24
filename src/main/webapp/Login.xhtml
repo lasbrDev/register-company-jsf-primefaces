@@ -20,10 +20,10 @@
 				empresas com cadastro simplificado.</h4>
 		</div>
 		<div class="content-login">
-			<h:form class="content-login-box">
-				<p:inputText class="inputs" placeholder="Email" />
-				<p:password class="inputs" placeholder="Senha" />
-				<p:commandButton value="Entrar" styleClass="btn btn-enter" />
+			<h:form id="frm" class="content-login-box">
+				<p:inputText class="inputs" placeholder="Email" value="#{userBean.user.email}" />
+				<p:password class="inputs" placeholder="Senha" value="#{userBean.user.password}" />
+				<p:commandButton value="Entrar" styleClass="btn btn-enter" action="#{userBean.login()}" process="frm" update="frm"/>
 
 				<h:panelGroup layout="block">
 					<p:commandLink value="Esqueceu a senha?"
@@ -70,7 +70,7 @@
 					<div class="form-group">
 						<p:calendar id="birthDate" placeholder="Data de Nascimento"
 							value="#{userBean.user.birthDate}" pattern="dd/MM/yyyy"
-							required="true" navigator="true" yearRange="1900:2024"
+							required="true" navigator="true" yearRange="1905:2024"
 							minDate="01/01/1905"
 							maxDate="#{T(java.time.LocalDate).now().format(java.time.format.DateTimeFormatter.ofPattern('dd/MM/yyyy'))}"
 							styleClass="inputs" />
@@ -78,9 +78,9 @@
 
 					<div class="form-group">
 						<p:commandButton id="saveCommandButton" value="Cadastrar"
-							actionListener="#{userBean.save}" update="userMessages"
-							oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').hide();"
-							process="userDialog" styleClass="btn btn-enter" />
+							actionListener="#{userBean.save}" update="userDialog userMessages"
+							oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').show();"
+							process="userDialog" styleClass="btn btn-enter" resetValues="true" />
 					</div>
 				</p:dialog>
 			</h:form>

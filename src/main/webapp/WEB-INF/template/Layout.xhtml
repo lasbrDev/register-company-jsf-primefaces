@@ -15,7 +15,9 @@
 </h:head>
 <h:body>
 	<header>
-		<h:graphicImage library="templates" name="logo.png" />
+		<div class="content-info">
+			<h2 class="pi pi-verified">Company Manager</h2>
+		</div>
 	</header>
 	<h2>
 		<ui:insert name="title" />
@@ -24,12 +26,11 @@
 	<div id="content">
 		<ui:insert name="content" />
 	</div>
-	<footer>
+	<footer class="footer">
 		<p>
-			Feito com ❤ por <a href="https://github.com/lasbrDev" target="_blank">✝
-				lasbrDev ✝</a>
+			Feito com <span class="heart">❤</span> por <a
+				href="https://github.com/lasbrDev" target="_blank">✝ lasbrDev ✝</a>
 		</p>
-
 	</footer>
 
 	<h:form>

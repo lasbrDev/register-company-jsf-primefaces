@@ -29,4 +29,9 @@ public class UserService implements Serializable {
 		}
 		users.save(user);
 	}
+
+	public User findUserByEmail(String email) {
+		return users.findByEmail(email);
+	}
 }
+

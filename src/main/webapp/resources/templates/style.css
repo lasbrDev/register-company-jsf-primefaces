@@ -7,22 +7,28 @@ body {
 }
 
 header {
-    padding: 2.0px;
+	padding: 5px;
     margin-bottom: 20px;
     height: 30px;
-    color: #fff;
+    text-align: center;
+    color: #1a5fb4;
+    background-color: #9a9996;
     box-shadow: 0px 2px 2px #ccc;
+    
 }
 
 #content {
     padding: 0px 8px;
 }
 
-footer {
-    border-top: 1px solid #ccc;
-    padding: 5px 8px;
-    margin-top: 20px;
-    margin-bottom: 10px; 
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #f5f5f5;
+	text-align: center;
+	padding: 10px 0;
 }
 
 h2 {
@@ -31,5 +37,9 @@ h2 {
     padding: 0px;
     margin: 0px;
     margin-bottom: 10px;
+}
+
+.heart {
+	color: red;
 }
 
