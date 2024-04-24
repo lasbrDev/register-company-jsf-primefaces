@@ -22,7 +22,7 @@ public class Users implements Serializable {
 		this.manager = manager;
 	}
 
-	public User findByEmail(String email) {
+	public User findUserByEmail(String email) {
 		try {
 			return manager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
 					.setParameter("email", email).getSingleResult();
@@ -32,7 +32,7 @@ public class Users implements Serializable {
 	}
 
 	public User save(User user) {
-		if (findByEmail(user.getEmail()) == null) {
+		if (findUserByEmail(user.getEmail()) == null) {
 			manager.persist(user);
 			return user;
 		} else {
