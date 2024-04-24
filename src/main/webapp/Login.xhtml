@@ -21,9 +21,12 @@
 		</div>
 		<div class="content-login">
 			<h:form id="frm" class="content-login-box">
-				<p:inputText class="inputs" placeholder="Email" value="#{userBean.user.email}" />
-				<p:password class="inputs" placeholder="Senha" value="#{userBean.user.password}" />
-				<p:commandButton value="Entrar" styleClass="btn btn-enter" action="#{userBean.login()}" process="frm" update="frm"/>
+				<p:inputText class="inputs" placeholder="Email"
+					value="#{userBean.user.email}" />
+				<p:password class="inputs" placeholder="Senha"
+					value="#{userBean.user.password}" />
+				<p:commandButton value="Entrar" styleClass="btn btn-enter"
+					action="#{userBean.login()}" process="frm" update="frm" />
 
 				<h:panelGroup layout="block">
 					<p:commandLink value="Esqueceu a senha?"
@@ -43,7 +46,7 @@
 					widgetVar="userDialogWidgetVar" resizable="false" modal="true"
 					closable="true" styleClass="content-login-box">
 					<p:messages id="userMessages" showDetail="true" />
-					
+
 					<div class="form-group">
 						<div class="input-group">
 							<p:inputText id="firstName" placeholder="Nome"
@@ -64,7 +67,10 @@
 					<div class="form-group">
 						<p:password id="password" placeholder="Senha"
 							value="#{userBean.user.password}" required="true"
-							styleClass="inputs" />
+							styleClass="inputs" feedback="true" minLength="8" maxLength="30"
+							match="confirmPassword"
+							validatorMessage="A senha deve conter no mínimo 8 caracteres, incluindo letras maiúsculas, letras minúsculas, números e caracteres especiais."
+							converter="javax.faces.LongRunningConverter" />
 					</div>
 
 					<div class="form-group">
@@ -78,9 +84,11 @@
 
 					<div class="form-group">
 						<p:commandButton id="saveCommandButton" value="Cadastrar"
-							actionListener="#{userBean.save}" update="userDialog userMessages"
+							actionListener="#{userBean.save}"
+							update="userDialog userMessages"
 							oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').show();"
-							process="userDialog" styleClass="btn btn-enter" resetValues="true" />
+							process="userDialog" styleClass="btn btn-enter"
+							resetValues="true" />
 					</div>
 				</p:dialog>
 			</h:form>
