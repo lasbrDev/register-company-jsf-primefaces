@@ -24,14 +24,14 @@ public class UserService implements Serializable {
 	
 	@Transactional
 	public void registerUser(User user) {
-		if (users.findByEmail(user.getEmail()) != null) {
+		if (users.findUserByEmail(user.getEmail()) != null) {
 			throw new UserAlreadyExistsException("E-mail já cadastrado!");
 		}
 		users.save(user);
 	}
 
 	public User findUserByEmail(String email) {
-		return users.findByEmail(email);
+		return users.findUserByEmail(email);
 	}
 }
 
