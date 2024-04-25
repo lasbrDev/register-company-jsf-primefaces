@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,6 +30,7 @@ import jakarta.validation.constraints.Past;
 @Table(name = "company")
 public class Company implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id

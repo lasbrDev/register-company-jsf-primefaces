@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.repository;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,9 +12,14 @@ import jakarta.persistence.TypedQuery;
 
 public class Companies implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private final transient EntityManager manager;
+
+	public Companies() {
+		this.manager = null;
+	}
 	
 	@Inject
 	public Companies(EntityManager manager) {
@@ -35,8 +41,8 @@ public class Companies implements Serializable {
 		return manager.createQuery("from Company", Company.class).getResultList();
 	}
 	
-	public Company save(Company company) {
-		return manager.merge(company);
+	public void save(Company company) {
+		manager.merge(company);
 	}
 	
 	public void remove(Company company) {

@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.service;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import javax.inject.Inject;
@@ -12,9 +13,14 @@ import br.com.lasbr.erp.util.Transactional;
 @Named
 public class RegistrationCompanyService implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private final Companies companies;
+
+	public RegistrationCompanyService() {
+		this.companies = null;
+	}
 	
 	@Inject
 	public RegistrationCompanyService(Companies companies) {
@@ -23,11 +29,13 @@ public class RegistrationCompanyService implements Serializable {
 	
 	@Transactional
 	public void save(Company company) {
-		companies.save(company);
+        assert companies != null;
+        companies.save(company);
 	}
 
 	@Transactional
 	public void delete(Company company) {
-		companies.remove(company);
+        assert companies != null;
+        companies.remove(company);
 	}
 }

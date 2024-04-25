@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.util;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import javax.annotation.Priority;
@@ -16,9 +17,14 @@ import jakarta.persistence.EntityTransaction;
 @Priority(Interceptor.Priority.APPLICATION)
 public class TransactionalInterceptor implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private final transient EntityManager manager;
+
+	public TransactionalInterceptor() {
+		this.manager = null;
+	}
 	
 	@Inject
 	public TransactionalInterceptor(EntityManager manager) {

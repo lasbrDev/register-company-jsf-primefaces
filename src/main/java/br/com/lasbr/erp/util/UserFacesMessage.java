@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.util;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 @ApplicationScoped
 public class UserFacesMessage implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private void add(String message, FacesMessage.Severity severity) {

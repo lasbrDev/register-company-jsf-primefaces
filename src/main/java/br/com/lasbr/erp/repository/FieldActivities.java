@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.repository;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,9 +17,14 @@ import jakarta.persistence.criteria.Root;
 @Named
 public class FieldActivities implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private final transient EntityManager manager;
+
+	public FieldActivities() {
+		this.manager = null;
+	}
 	
 	@Inject
 	public FieldActivities(EntityManager manager) {

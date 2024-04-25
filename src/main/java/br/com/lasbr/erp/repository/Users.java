@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.repository;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import javax.inject.Inject;
@@ -13,14 +14,11 @@ import jakarta.persistence.NoResultException;
 @Named
 public class Users implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private final transient EntityManager manager;
-
 	@Inject
-	public Users(EntityManager manager) {
-		this.manager = manager;
-	}
+	private  transient EntityManager manager;
 
 	public User findUserByEmail(String email) {
 		try {
@@ -31,10 +29,9 @@ public class Users implements Serializable {
 		}
 	}
 
-	public User save(User user) {
+	public void save(User user) {
 		if (findUserByEmail(user.getEmail()) == null) {
 			manager.persist(user);
-			return user;
 		} else {
 			throw new UserAlreadyExistsException("User with email " + user.getEmail() + "alredy exists");
 		}

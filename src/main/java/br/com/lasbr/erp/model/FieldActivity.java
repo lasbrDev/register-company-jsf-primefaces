@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "field_activity")
 public class FieldActivity implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id

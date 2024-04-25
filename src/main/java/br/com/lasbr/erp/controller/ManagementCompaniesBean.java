@@ -56,7 +56,7 @@ public class ManagementCompaniesBean implements Serializable {
 	}
 
 	public void prepareEditing() {
-		fieldActivityConveter = new FieldActivityConveter(Arrays.asList(company.getFieldActivity()));
+		fieldActivityConveter = new FieldActivityConverter(Arrays.asList(company.getFieldActivity()));
 	}
 
 	public void save() {
@@ -94,7 +94,7 @@ public class ManagementCompaniesBean implements Serializable {
 
 	public List<FieldActivity> completeFieldActivities(String description) {
 		List<FieldActivity> listFieldActivities = fieldActivities.search(description);
-		fieldActivityConveter = new FieldActivityConveter(listFieldActivities);
+		fieldActivityConveter = new FieldActivityConverter(listFieldActivities);
 		return listFieldActivities;
 	}
 	

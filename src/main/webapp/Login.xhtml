@@ -13,6 +13,12 @@
 
 </h:head>
 <h:body>
+	<script>
+		function redirectToLogin() {
+			window.location.href = "Login.xhtml";
+		}
+	</script>
+
 	<div class="content">
 		<div class="content-info">
 			<h1>Company Manager</h1>
@@ -36,7 +42,7 @@
 				<hr />
 
 				<p:commandButton value="Criar Nova Conta"
-					actionListener="#{userBean.prepareNewUser}"
+					 rendered="#{not userBean.registrationSuccessful}"
 					oncomplete="PF('userDialogWidgetVar').show()"
 					styleClass="ui-button-success" update="userDialog" process="@this">
 					<p:resetInput target="userDialog" />
@@ -44,7 +50,7 @@
 
 				<p:dialog id="userDialog" header="Cadastre-se"
 					widgetVar="userDialogWidgetVar" resizable="false" modal="true"
-					closable="true" styleClass="content-login-box">
+					closable="true" styleClass="content-login-box" onHide="redirectToLogin()">
 					<p:messages id="userMessages" showDetail="true" />
 
 					<div class="form-group">
@@ -67,10 +73,7 @@
 					<div class="form-group">
 						<p:password id="password" placeholder="Senha"
 							value="#{userBean.user.password}" required="true"
-							styleClass="inputs" feedback="true" minLength="8" maxLength="30"
-							match="confirmPassword"
-							validatorMessage="A senha deve conter no mínimo 8 caracteres, incluindo letras maiúsculas, letras minúsculas, números e caracteres especiais."
-							converter="javax.faces.LongRunningConverter" />
+							styleClass="inputs" />
 					</div>
 
 					<div class="form-group">

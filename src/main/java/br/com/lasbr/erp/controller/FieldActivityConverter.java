@@ -9,11 +9,11 @@ import javax.faces.convert.Converter;
 import br.com.lasbr.erp.model.FieldActivity;
 
 @SuppressWarnings("rawtypes")
-public class FieldActivityConveter implements Converter {
+public class FieldActivityConverter implements Converter {
 	
-	private List<FieldActivity> listFieldAcitivity;
+	private final List<FieldActivity> listFieldAcitivity;
 	
-	public FieldActivityConveter(List<FieldActivity> listFieldAcitivity) {
+	public FieldActivityConverter(List<FieldActivity> listFieldAcitivity) {
 		this.listFieldAcitivity = listFieldAcitivity;
 	}
 

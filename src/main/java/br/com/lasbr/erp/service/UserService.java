@@ -1,5 +1,6 @@
 package br.com.lasbr.erp.service;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import javax.inject.Inject;
@@ -13,9 +14,14 @@ import br.com.lasbr.erp.util.Transactional;
 @Named
 public class UserService implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private final Users users;
+
+	public UserService() {
+	this.users = null;
+	}
 	
 	@Inject
 	public UserService(Users users) {
@@ -24,14 +30,16 @@ public class UserService implements Serializable {
 	
 	@Transactional
 	public void registerUser(User user) {
-		if (users.findUserByEmail(user.getEmail()) != null) {
+        assert users != null;
+        if (users.findUserByEmail(user.getEmail()) != null) {
 			throw new UserAlreadyExistsException("E-mail já cadastrado!");
 		}
 		users.save(user);
 	}
 
 	public User findUserByEmail(String email) {
-		return users.findUserByEmail(email);
+        assert users != null;
+        return users.findUserByEmail(email);
 	}
 }
 

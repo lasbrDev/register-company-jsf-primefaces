@@ -7,7 +7,7 @@ public enum CompanyType {
 	LTDA("Sociedade Limitada"),
 	SA("Sociedade Anônima");
 	
-	private String description;
+	private final String description;
 	
 	CompanyType(String description) {
 		this.description = description;
