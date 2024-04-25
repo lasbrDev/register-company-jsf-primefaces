@@ -16,21 +16,12 @@ public class UserService implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
-	
-	private final Users users;
 
-	public UserService() {
-	this.users = null;
-	}
-	
 	@Inject
-	public UserService(Users users) {
-		this.users = users;
-	}
+	private Users users;
 	
 	@Transactional
 	public void registerUser(User user) {
-        assert users != null;
         if (users.findUserByEmail(user.getEmail()) != null) {
 			throw new UserAlreadyExistsException("E-mail já cadastrado!");
 		}
@@ -38,7 +29,6 @@ public class UserService implements Serializable {
 	}
 
 	public User findUserByEmail(String email) {
-        assert users != null;
         return users.findUserByEmail(email);
 	}
 }

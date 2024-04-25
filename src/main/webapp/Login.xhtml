@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" lang="pt-BR"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html" lang="pt-BR"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
 	<title>Manager Companies</title>
 	<h:outputStylesheet library="templates" name="login.css" />
 	<h:outputStylesheet library="webjars"
-		name="font-awesome/5.15.4/css/all.min-jsf.css" />
+						name="font-awesome/5.15.4/css/all.min-jsf.css" />
 
 </h:head>
 <h:body>
-	<script>
-		function redirectToLogin() {
-			window.location.href = "Login.xhtml";
-		}
-	</script>
 
 	<div class="content">
 		<div class="content-info">
@@ -27,71 +22,72 @@
 		</div>
 		<div class="content-login">
 			<h:form id="frm" class="content-login-box">
+				<p:messages autoUpdate="true" showSummary="false" showDetail="true" globalOnly="true" />
 				<p:inputText class="inputs" placeholder="Email"
-					value="#{userBean.user.email}" />
+							 value="#{userBean.user.email}" />
 				<p:password class="inputs" placeholder="Senha"
-					value="#{userBean.user.password}" />
+							value="#{userBean.user.password}" />
 				<p:commandButton value="Entrar" styleClass="btn btn-enter"
-					action="#{userBean.login()}" process="frm" update="frm" />
+								 action="#{userBean.login}" process="frm" update="frm" />
 
 				<h:panelGroup layout="block">
 					<p:commandLink value="Esqueceu a senha?"
-						styleClass="forgot-password" />
+								   styleClass="forgot-password" />
 				</h:panelGroup>
 
 				<hr />
 
 				<p:commandButton value="Criar Nova Conta"
-					 rendered="#{not userBean.registrationSuccessful}"
-					oncomplete="PF('userDialogWidgetVar').show()"
-					styleClass="ui-button-success" update="userDialog" process="@this">
+								 rendered="#{not userBean.registrationSuccessful}"
+								 oncomplete="PF('userDialogWidgetVar').show()"
+								 styleClass="ui-button-success" update="userDialog" process="@this">
 					<p:resetInput target="userDialog" />
 				</p:commandButton>
 
 				<p:dialog id="userDialog" header="Cadastre-se"
-					widgetVar="userDialogWidgetVar" resizable="false" modal="true"
-					closable="true" styleClass="content-login-box" onHide="redirectToLogin()">
+						  widgetVar="userDialogWidgetVar" resizable="false" modal="true"
+						  closable="true" styleClass="content-login-box" onHide="redirectToLogin()">
 					<p:messages id="userMessages" showDetail="true" />
 
 					<div class="form-group">
 						<div class="input-group">
 							<p:inputText id="firstName" placeholder="Nome"
-								value="#{userBean.user.firstName}" required="true"
-								styleClass="inputs" />
+										 value="#{userBean.user.firstName}" required="true"
+										 styleClass="inputs" />
 							<p:inputText id="lastName" placeholder="Sobrenome"
-								value="#{userBean.user.lastName}" required="true"
-								styleClass="inputs" />
+										 value="#{userBean.user.lastName}" required="true"
+										 styleClass="inputs" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<p:inputText id="email" placeholder="Email"
-							value="#{userBean.user.email}" required="true"
-							styleClass="inputs" />
+									 value="#{userBean.user.email}" required="true"
+									 styleClass="inputs" />
 					</div>
 
 					<div class="form-group">
 						<p:password id="password" placeholder="Senha"
-							value="#{userBean.user.password}" required="true"
-							styleClass="inputs" />
+									value="#{userBean.user.password}" required="true"
+									styleClass="inputs" />
 					</div>
 
 					<div class="form-group">
 						<p:calendar id="birthDate" placeholder="Data de Nascimento"
-							value="#{userBean.user.birthDate}" pattern="dd/MM/yyyy"
-							required="true" navigator="true" yearRange="1905:2024"
-							minDate="01/01/1905"
-							maxDate="#{T(java.time.LocalDate).now().format(java.time.format.DateTimeFormatter.ofPattern('dd/MM/yyyy'))}"
-							styleClass="inputs" />
+									value="#{userBean.user.birthDate}" pattern="dd/MM/yyyy"
+									required="true" navigator="true" yearRange="1905:2024"
+									minDate="01/01/1905"
+									maxDate="#{T(java.time.LocalDate).now().format(java.time.format.DateTimeFormatter.ofPattern('dd/MM/yyyy'))}"
+									styleClass="inputs" />
 					</div>
 
 					<div class="form-group">
 						<p:commandButton id="saveCommandButton" value="Cadastrar"
-							actionListener="#{userBean.save}"
-							update="userDialog userMessages"
-							oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').show();"
-							process="userDialog" styleClass="btn btn-enter"
-							resetValues="true" />
+										 actionListener="#{userBean.save}"
+										 update="userDialog userMessages"
+										 oncomplete="if (!args.validationFailed) PF('userDialogWidgetVar').show();"
+										 process="userDialog" styleClass="btn btn-enter"
+										 resetValues="true" />
 					</div>
 				</p:dialog>
 			</h:form>

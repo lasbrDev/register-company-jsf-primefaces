@@ -10,6 +10,9 @@ import br.com.lasbr.erp.exception.UserAlreadyExistsException;
 import br.com.lasbr.erp.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 @Named
 public class Users implements Serializable {
@@ -21,9 +24,13 @@ public class Users implements Serializable {
 	private  transient EntityManager manager;
 
 	public User findUserByEmail(String email) {
+		CriteriaBuilder cb = manager.getCriteriaBuilder();
+		CriteriaQuery<User> query = cb.createQuery(User.class);
+		Root<User> root = query.from(User.class);
+		query.select(root).where(cb.equal(root.get("email"), email));
 		try {
 			return manager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
-					.setParameter("email", email).getSingleResult();
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
